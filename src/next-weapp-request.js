@@ -4,6 +4,15 @@
   var nx = global.nx || require('next-js-core2');
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
+    statics: {
+      instance: null,
+      getInstance: function () {
+        if (!this.instance) {
+          this.instance = new this();
+        }
+        return this.instance;
+      }
+    },
     methods: {
       getHeaders: function () {
         return {};
