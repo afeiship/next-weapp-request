@@ -17,6 +17,12 @@
       getHeaders: function () {
         return {};
       },
+      setRequestInterceptor: function (inMethod, inUrl, inData, inOptions){
+        return inData;
+      },
+      setResponseInterceptor: function (inMethod, inUrl, inResponse, inOptions){
+        return inResponse;
+      },
       request: function (inMethod, inUrl, inData, inOptions) {
         var self = this;
         return new Promise(function (resolve, reject) {
@@ -25,7 +31,7 @@
               header: self.getHeaders(),
               method: inMethod.toUpperCase(),
               url: inUrl,
-              data: inData,
+              data: self.setRequestInterceptor(inMethod, inUrl, inData, inOptions),
               success: function (response) {
                 resolve(response);
               },
