@@ -2,6 +2,7 @@
 
   var global = global || this || self || window;
   var nx = global.nx || require('next-js-core2');
+  var EMPTY_OBJECT = {};
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
     statics: {
@@ -14,8 +15,11 @@
       }
     },
     methods: {
+      getDefaults: function(){
+        return EMPTY_OBJECT;
+      },
       getHeaders: function () {
-        return {};
+        return EMPTY_OBJECT;
       },
       setRequestInterceptor: function (inMethod, inUrl, inData, inOptions){
         return inData;
@@ -43,7 +47,7 @@
                 var _error = self.setErrorInterceptor(inMethod, inUrl, error, inOptions);
                 reject(_error);
               }
-            }, inOptions)
+            }, self.getDefaults(), inOptions)
           );
         });
       },
