@@ -33,7 +33,7 @@
               url: inUrl,
               data: self.setRequestInterceptor(inMethod, inUrl, inData, inOptions),
               success: function (response) {
-                var _response = self.setResponseInterceptor(response);
+                var _response = self.setResponseInterceptor(inMethod, inUrl, response, inOptions);
                 resolve(_response);
               },
               fail: function (error) {
