@@ -23,6 +23,9 @@
       setResponseInterceptor: function (inMethod, inUrl, inResponse, inOptions){
         return inResponse;
       },
+      setErrorInterceptor: function (inMethod, inUrl, inError, inOptions){
+        return inError;
+      },
       request: function (inMethod, inUrl, inData, inOptions) {
         var self = this;
         return new Promise(function (resolve, reject) {
@@ -37,7 +40,8 @@
                 resolve(_response);
               },
               fail: function (error) {
-                reject(error);
+                var _error = self.setErrorInterceptor(inMethod, inUrl, error, inOptions);
+                reject(_error);
               }
             }, inOptions)
           );
