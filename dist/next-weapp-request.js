@@ -33,7 +33,8 @@
               url: inUrl,
               data: self.setRequestInterceptor(inMethod, inUrl, inData, inOptions),
               success: function (response) {
-                resolve(response);
+                var _response = self.setResponseInterceptor(response);
+                resolve(_response);
               },
               fail: function (error) {
                 reject(error);
