@@ -22,7 +22,7 @@
         return new Promise(function (resolve, reject) {
           wx.request(
             nx.mix({
-              headers: self.getHeaders(),
+              header: self.getHeaders(),
               method: inMethod.toUpperCase(),
               url: inUrl,
               data: inData,
