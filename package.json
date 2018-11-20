@@ -1,6 +1,6 @@
 {
   "name": "next-weapp-request",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A request wrapper for weapp wxRequest",
   "homepage": "https://github.com/afeiship/next-weapp-request",
   "author": {
