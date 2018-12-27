@@ -5,7 +5,6 @@
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
     statics: {
-      parallel: { limit: 10, counter: 0 },
       instance: null,
       getInstance: function() {
         if (!this.instance) {
