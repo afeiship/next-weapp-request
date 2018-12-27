@@ -78,7 +78,7 @@
       'options,get,head,post,put,delete,trace,connect': function(inMethod) {
         var self = this;
         return function(inUrl, inData, inOptions) {
-          return self.parallel(inMethod, inUrl, inData, inOptions);
+          return self.request(inMethod, inUrl, inData, inOptions);
         };
       }
     }
