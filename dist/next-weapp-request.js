@@ -1,6 +1,7 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
+  var NxQueue = nx.Queue || require('next-queue');
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
     statics: {
@@ -29,33 +30,16 @@
       setErrorInterceptor: function(inMethod, inUrl, inError, inOptions) {
         return inError;
       },
-      parallel: function(inMethod, inUrl, inData, inOptions) {
-        var self = this;
-        var counter = NxWeappRequest.parallel.counter;
-        var limit = NxWeappRequest.parallel.limit;
-        var complete = (inOptions || {}).complete || nx.noop;
-        var options = nx.mix(inOptions, {
-          complete: function(res) {
-            complete(res);
-            NxWeappRequest.parallel.counter--;
-          }
+      parallel: function(inItems) {
+        var fns = inItems.map(function(promiseItem) {
+          return function(next) {
+            promiseItem.then(function(response) {
+              next(response);
+            });
+          };
         });
-
-        if (counter < limit) {
-          NxWeappRequest.parallel.counter++;
-          return this.request(inMethod, inUrl, inData, options);
-        } else {
-          return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-              try {
-                self.parallel(inMethod, inUrl, inData, options);
-                resolve();
-              } catch (_) {
-                reject(_);
-              }
-            }, 300);
-          });
-        }
+        var nxQueue = new NxQueue(fns);
+        return nxQueue.start();
       },
       request: function(inMethod, inUrl, inData, inOptions) {
         var self = this;
