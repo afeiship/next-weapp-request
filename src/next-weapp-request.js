@@ -1,7 +1,6 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
-  var nxChunk = nx.chunk || require('next-chunk');
   var EMPTY_OBJECT = {};
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {

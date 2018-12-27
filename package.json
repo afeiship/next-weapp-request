@@ -24,7 +24,6 @@
     "mocha": "^3.5.0"
   },
   "dependencies": {
-    "next-chunk": "github:afeiship/next-chunk",
     "next-js-core2": "github:afeiship/next-js-core2"
   }
 }
