@@ -38,7 +38,17 @@
           };
         });
         var nxQueue = new NxQueue(fns);
-        return nxQueue.start();
+        return new Promise(function(resolve, reject) {
+          try {
+            nxQueue.start().then(function(response) {
+              var status = response.status;
+              var data = response.data;
+              status === 'done' && resolve(data);
+            });
+          } catch (_) {
+            reject(_);
+          }
+        });
       },
       request: function(inMethod, inUrl, inData, inOptions) {
         var self = this;
