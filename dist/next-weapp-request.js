@@ -1,7 +1,6 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
-  var EMPTY_OBJECT = {};
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
     statics: {
@@ -16,10 +15,10 @@
     },
     methods: {
       getDefaults: function() {
-        return EMPTY_OBJECT;
+        return {};
       },
       getHeaders: function() {
-        return EMPTY_OBJECT;
+        return {};
       },
       setRequestInterceptor: function(inMethod, inUrl, inData, inOptions) {
         return inData;
@@ -34,7 +33,7 @@
         var self = this;
         var counter = NxWeappRequest.parallel.counter;
         var limit = NxWeappRequest.parallel.limit;
-        var complete = inOptions.complete || nx.noop;
+        var complete = (inOptions || {}).complete || nx.noop;
         var options = nx.mix(inOptions, {
           complete: function(res) {
             complete(res);
