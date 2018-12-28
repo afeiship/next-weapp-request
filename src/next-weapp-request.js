@@ -5,6 +5,7 @@
 
   var NxWeappRequest = nx.declare('nx.WeappRequest', {
     statics: {
+      request: wx.request,
       instance: null,
       getInstance: function() {
         if (!this.instance) {
@@ -29,7 +30,7 @@
       setErrorInterceptor: function(inMethod, inUrl, inError, inOptions) {
         return inError;
       },
-      parallel: function(inItems) {
+      queue: function(inItems) {
         var fns = inItems.map(function(promiseItem) {
           return function(next) {
             promiseItem.then(function(response) {
@@ -53,7 +54,7 @@
       request: function(inMethod, inUrl, inData, inOptions) {
         var self = this;
         return new Promise(function(resolve, reject) {
-          wx.request(
+          NxWeappRequest.request(
             nx.mix(
               {
                 header: self.getHeaders(),
