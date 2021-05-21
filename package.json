@@ -1,30 +1,44 @@
 {
-  "name": "next-weapp-request",
-  "version": "1.0.1",
-  "description": "A request wrapper for weapp wxRequest",
+  "name": "@jswork/next-weapp-request",
+  "version": "1.0.0",
+  "description": "A request wrapper for weapp wx.request.",
   "homepage": "https://github.com/afeiship/next-weapp-request",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"
   },
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "test": "jest",
+    "start": "node ./express.js",
+    "release": "release-it"
   },
-  "main": "dist/next-weapp-request.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
-    "del": "^2.2.1",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-size": "^2.1.0",
-    "gulp-uglify": "^2.1.2",
-    "yargs": "^4.7.1",
-    "mocha": "^3.5.0"
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@jswork/gulp-pkg-header": "^1.0.3",
+    "@jswork/next": "^1.0.5",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-debug": "^4.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-ignore": "^3.0.0",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-rename": "^2.0.0",
+    "gulp-size": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
+    "prettier": "^2.2.1",
+    "release-it": "^14.2.2",
+    "uglify-js": "3.12.4",
+    "uglify-save-license": "^0.4.1"
   },
-  "dependencies": {
-    "next-js-core2": "github:afeiship/next-js-core2",
-    "next-queue": "github:afeiship/next-queue"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

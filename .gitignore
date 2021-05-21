@@ -7,3 +7,7 @@ package-lock.json
 .DS_Store
 .idea
 .vscode
+
+# vscode localhistory
+.history
+dist
